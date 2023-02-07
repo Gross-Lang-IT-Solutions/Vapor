@@ -9,10 +9,10 @@
     <Grid Margin="0,0,400,0">
         <Grid Height="100" Width="100"/>
         <Grid x:Name="grid" Height="434" VerticalAlignment="Top" Margin="0,0,-404,0">
-            <TextBox x:Name="emailInput" HorizontalAlignment="Left" Height="55" Margin="29,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" TextChanged="PasswordInput"/>
+            <TextBox x:Name="emailInput" HorizontalAlignment="Left" Height="55" Margin="29,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" MouseLeftButtonDown="EmailInput" ></TextBox>
             <Rectangle x:Name="firstIndicator" HorizontalAlignment="Left" Height="22" Margin="29,107,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FFFF007E"/>
             <Rectangle x:Name="secondIndicator" HorizontalAlignment="Left" Height="22" Margin="29,107,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FC4A4849"/>
-            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Height="55" Margin="29,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" TextChanged="EmailInput"/>
+            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Height="55" Margin="29,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"  MouseLeftButtonDown="PasswordInput" />
             <Rectangle x:Name="thirdIndicator" HorizontalAlignment="Left" Height="22" Margin="29,254,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FFFF007E"/>
             <Rectangle x:Name="fourthIndicator" HorizontalAlignment="Left" Height="22" Margin="29,254,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FC4A4849"/>
         </Grid>

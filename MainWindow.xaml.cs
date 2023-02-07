@@ -23,26 +23,31 @@ namespace Vapor
         public MainWindow()
         {
             InitializeComponent();
-
+            emailInput.AddHandler(FrameworkElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(EmailInput), true);
+            passwordInput.AddHandler(FrameworkElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PasswordInput), true);
             firstIndicator.Visibility = Visibility.Hidden;
             thirdIndicator.Visibility = Visibility.Hidden;
         }
-        private void PasswordInput(object sender, TextChangedEventArgs e)
+        private void EmailInput(object sender, MouseButtonEventArgs e)
         {
 
-            firstIndicator.Visibility = Visibility.Visible;
+          firstIndicator.Visibility = Visibility.Visible;
             secondIndicator.Visibility = Visibility.Hidden;
             fourthIndicator.Visibility = Visibility.Visible;
             thirdIndicator.Visibility = Visibility.Hidden;
+
         }
 
-        private void EmailInput(object sender, TextChangedEventArgs e)
+        private void PasswordInput(object sender, MouseButtonEventArgs e)
         {
-
-            firstIndicator.Visibility = Visibility.Hidden;
+              firstIndicator.Visibility = Visibility.Hidden;
             secondIndicator.Visibility = Visibility.Visible;
             fourthIndicator.Visibility = Visibility.Hidden;
             thirdIndicator.Visibility = Visibility.Visible;
+        }
+        private void ExecuteEnterLevel()
+        {
+            MessageBox.Show("cddddd");
         }
 
     }
