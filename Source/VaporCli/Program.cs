@@ -24,8 +24,9 @@ while (running)
 		case "exit":
 			running = false;
 			break;
+
 		default:
-			Console.WriteLine("");
+			Console.WriteLine($"Command '{segs[0]}' was not recognized.");
 			break;
 	}
 
