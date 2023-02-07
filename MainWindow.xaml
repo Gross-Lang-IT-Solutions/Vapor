@@ -1,0 +1,21 @@
+﻿<Window x:Name="Login" x:Class="Vapor.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:Vapor"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="450" Width="400" Background="#FF1B1B1B" WindowStyle="None">
+    <Grid Margin="0,0,400,0">
+        <Grid Height="100" Width="100"/>
+        <Grid x:Name="grid" Height="434" VerticalAlignment="Top" Margin="0,0,-404,0">
+            <TextBox x:Name="emailInput" HorizontalAlignment="Left" Height="55" Margin="29,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" TextChanged="PasswordInput"/>
+            <Rectangle x:Name="firstIndicator" HorizontalAlignment="Left" Height="22" Margin="29,107,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FFFF007E"/>
+            <Rectangle x:Name="secondIndicator" HorizontalAlignment="Left" Height="22" Margin="29,107,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FC4A4849"/>
+            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Height="55" Margin="29,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" TextChanged="EmailInput"/>
+            <Rectangle x:Name="thirdIndicator" HorizontalAlignment="Left" Height="22" Margin="29,254,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FFFF007E"/>
+            <Rectangle x:Name="fourthIndicator" HorizontalAlignment="Left" Height="22" Margin="29,254,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FC4A4849"/>
+        </Grid>
+
+    </Grid>
+</Window>
