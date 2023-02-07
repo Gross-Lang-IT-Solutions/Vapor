@@ -8,7 +8,7 @@ if (!Config.TryLoad(configFilePath, out var config))
 
 Console.WriteLine(
 	"Welcome to Vapor CLI!\n" +
-	"Copyright (C) 2023 Groß & Lang IT Solutions and GSODev. All rights reserved." +
+	"Copyright (C) 2023 Groß & Lang IT Solutions and GSODev. All rights reserved.");
 
 var sb = new StringBuilder();
 var running = true;
