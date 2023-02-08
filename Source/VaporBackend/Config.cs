@@ -1,4 +1,5 @@
 ﻿using Newtonsoft.Json;
+using System;
 using System.Diagnostics.CodeAnalysis;
 
 namespace Vapor;
@@ -7,7 +8,7 @@ namespace Vapor;
 public sealed class Config
 {
 	[JsonProperty("games")]
-	public readonly List<Game> Games = new();
+	public readonly Dictionary<Guid, Game> Games = new();
 
 	private static string XorCipher(string str)
 	{
