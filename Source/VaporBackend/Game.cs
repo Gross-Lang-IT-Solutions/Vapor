@@ -3,23 +3,29 @@
 namespace Vapor;
 
 [JsonObject(MemberSerialization = Newtonsoft.Json.MemberSerialization.OptIn)]
-public sealed class Game
+public class Game
 {
-	[JsonProperty("name")]
-	public string Name;
+    [JsonProperty("name")]
+    public string Name;
 
-	[JsonProperty("executablePath")]
-	public string ExecutablePath;
+    [JsonProperty("executablePath")]
+    public string ExecutablePath;
 
-	[JsonProperty("isFavorite")]
-	public bool IsFavorite = false;
+    [JsonProperty("isFavorite")]
+    public bool IsFavorite = false;
 
-	[JsonProperty("playTime")]
-	public TimeSpan PlayTime = TimeSpan.Zero;
+    [JsonProperty("playTime")]
+    public TimeSpan PlayTime = TimeSpan.Zero;
 
-	public Game(string name, string executablePath)
-	{
-		Name = name;
-		ExecutablePath = executablePath;
-	}
+    public Game(string name, string executablePath)
+    {
+        Name = name;
+        ExecutablePath = executablePath;
+    }
+
+    public Game Copy() => new(Name, ExecutablePath)
+    {
+        IsFavorite = IsFavorite,
+        PlayTime = PlayTime
+    };
 }
