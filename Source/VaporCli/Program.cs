@@ -1,4 +1,5 @@
-﻿using System.Text;
+﻿using System.Diagnostics;
+using System.Text;
 using Vapor;
 
 const string configFilePath = "config.dat";
@@ -24,12 +25,18 @@ while (running)
             break;
         case "add":
             {
+                if (segs.Length != 1)
+                {
+                    Console.WriteLine("Usage: 'add'");
+                    break;
+                }
+
                 Console.Write("Game title: ");
                 var name = ReadLine();
                 Console.Write("Executable path: ");
                 var path = ReadLine();
 
-                var game = new Game(name, path);
+                var game = new Game(name, path, DateTime.Now);
                 config.AddGame(game);
             }
             break;
@@ -40,7 +47,7 @@ while (running)
                     Console.WriteLine("Usage: 'remove <guid>'");
                     break;
                 }
-                                
+
                 if (!Guid.TryParse(segs[1], out var guid) || !config.Games.ContainsKey(guid))
                 {
                     Console.WriteLine("There is no game with the specified GUID your list of games.");
@@ -51,14 +58,65 @@ while (running)
             break;
         case "list":
             {
+                if (segs.Length != 1)
+                {
+                    Console.WriteLine("Usage: 'list'");
+                    break;
+                }
+
                 if (config.Games.Count == 0)
                 {
                     Console.WriteLine("There are no games in your list.");
                     break;
                 }
 
-                foreach (var g in config.Games)
-                    Console.WriteLine($"{g.Key}: '{g.Value.Name}' installed at '{g.Value.ExecutablePath}'");
+                foreach (var g in config.Games.OrderBy(g => g.Value.Name))
+                    Console.WriteLine($"{g.Key}: '{g.Value.Name}'");
+            }
+            break;
+        case "details":
+            {
+                if (segs.Length != 2)
+                {
+                    Console.WriteLine("Usage: 'details <guid>'");
+                    break;
+                }
+
+                if (!Guid.TryParse(segs[1], out var guid) || !config.Games.ContainsKey(guid))
+                {
+                    Console.WriteLine("There is no game with the specified GUID your list of games.");
+                    break;
+                }
+
+                var game = config.Games[guid];
+                Console.WriteLine(
+                    $"Name: '{game.Name}'\n" +
+                    $"Executable path: '{game.ExecutablePath}'\n" +
+                    $"Install date and time: {game.InstallDateTime}\n" +
+                    $"Is favorite? {(game.IsFavorite ? "Yes" : "No")}\n" +
+                    $"Play time: {game.PlayTime}\n" +
+                    $"Last played date and time: {game.LastPlayedDateTime}\n" +
+                    $"Category: {game.Category}\n" +
+                    $"Publisher: {game.Publisher}\n" +
+                    $"Age rating: {game.AgeRating}");
+            }
+            break;
+        case "start":
+            {
+                if (segs.Length != 2)
+                {
+                    Console.WriteLine("Usage: 'start <guid>'");
+                    break;
+                }
+
+                if (!Guid.TryParse(segs[1], out var guid) || !config.Games.ContainsKey(guid))
+                {
+                    Console.WriteLine("There is no game with the specified GUID your list of games.");
+                    break;
+                }
+
+                Process.Start(new ProcessStartInfo(config.Games[guid].ExecutablePath));
+                break;
             }
             break;
         default:
