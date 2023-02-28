@@ -7,15 +7,35 @@
         mc:Ignorable="d"
         Title="MainWindow" Height="450" Width="400" Background="#FF1B1B1B" WindowStyle="None">
     <Grid Margin="0,0,400,0">
-        <Grid Height="100" Width="100"/>
-        <Grid x:Name="grid" Height="434" VerticalAlignment="Top" Margin="0,0,-404,0">
-            <TextBox x:Name="emailInput" HorizontalAlignment="Left" Height="55" Margin="29,29,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" MouseLeftButtonDown="EmailInput" ></TextBox>
-            <Rectangle x:Name="firstIndicator" HorizontalAlignment="Left" Height="22" Margin="29,107,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FFFF007E"/>
-            <Rectangle x:Name="secondIndicator" HorizontalAlignment="Left" Height="22" Margin="29,107,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FC4A4849"/>
-            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Height="55" Margin="29,171,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"  MouseLeftButtonDown="PasswordInput" />
-            <Rectangle x:Name="thirdIndicator" HorizontalAlignment="Left" Height="22" Margin="29,254,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FFFF007E"/>
-            <Rectangle x:Name="fourthIndicator" HorizontalAlignment="Left" Height="22" Margin="29,254,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="328" Fill="#FC4A4849"/>
-        </Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="18*"/>
+            <RowDefinition Height="16*"/>
+            <RowDefinition Height="12*"/>
+            <RowDefinition Height="77*"/>
+            <RowDefinition Height="327*"/>
+        </Grid.RowDefinitions>
+        <Grid Height="100" Width="100" Margin="0,52,-100,175" Grid.Row="4"/>
+        <Grid x:Name="grid" Height="327" VerticalAlignment="Center" Margin="0,0,-404,0" Grid.Row="4">
+            <TextBox x:Name="emailInput" HorizontalAlignment="Left" Height="26" Margin="29,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" MouseLeftButtonDown="EmailInput" BorderBrush="#00ABADB3" Background="#FC4A4849" ></TextBox>
+            <Rectangle x:Name="firstIndicator" HorizontalAlignment="Left" Height="3" Margin="30,67,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="326" Fill="#FFFF007E"/>
+            <Rectangle x:Name="secondIndicator" HorizontalAlignment="Left" Height="3" Margin="30,67,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="326" Fill="#FC4A4849"/>
+            <TextBox x:Name="passwordInput" HorizontalAlignment="Left" Height="26" Margin="30,101,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328"  MouseLeftButtonDown="PasswordInput" Background="#FC4A4849" BorderBrush="#00ABADB3" />
+            <Rectangle x:Name="thirdIndicator" HorizontalAlignment="Left" Height="3" Margin="31,125,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="327" Fill="#FFFF007E"/>
+            <Rectangle x:Name="fourthIndicator" HorizontalAlignment="Left" Height="3" Margin="31,125,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="327" Fill="#FC4A4849"/>
+            <TextBlock HorizontalAlignment="Left" Margin="31,29,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Foreground="White" FontFamily="Arial"/>
+            <TextBlock HorizontalAlignment="Left" Height="20" Margin="31,86,0,0" TextWrapping="Wrap" Foreground="White" FontFamily="Arial" VerticalAlignment="Top" Width="111"><Run Language="de-de" Text="Password:"/><LineBreak/><Run Language="de-de"/></TextBlock>
 
+        </Grid>
+        <TextBlock TextWrapping="Wrap" Text="TextBlock" Grid.RowSpan="5"/>
+        <Image Height="99" Margin="69,10,-164,0" VerticalAlignment="Top" RenderTransformOrigin="0.509,-0.236" Grid.RowSpan="4" Grid.Row="1" Source="/VaporIcon.png">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/VaporIcon.png"/>
+            </Image.OpacityMask>
+        </Image>
+        <Image Height="76" Margin="137,0,-349,0" VerticalAlignment="Center" Stretch="Fill" Source="/Frame 2.png" RenderTransformOrigin="0.376,-0.849" Grid.Row="3">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/Frame 2.png"/>
+            </Image.OpacityMask>
+        </Image>
     </Grid>
 </Window>
