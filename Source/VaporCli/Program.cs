@@ -74,6 +74,14 @@ while (running)
                     Console.WriteLine($"{g.Key}: '{g.Value.Name}'");
             }
             break;
+        case "search":
+            {
+                if (segs.Length == 1)
+                    break;
+				foreach (var g in config.SearchFor(string.Join(' ', segs[1..^0])))
+                    Console.WriteLine($"{g.Key}: '{g.Value.Name}'");
+            }
+            break;
         case "details":
             {
                 if (segs.Length != 2)
