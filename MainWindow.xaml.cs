@@ -31,24 +31,43 @@ namespace Vapor
         private void EmailInput(object sender, MouseButtonEventArgs e)
         {
 
-          firstIndicator.Visibility = Visibility.Visible;
-            secondIndicator.Visibility = Visibility.Hidden;
-            fourthIndicator.Visibility = Visibility.Visible;
-            thirdIndicator.Visibility = Visibility.Hidden;
+            EmCh();
 
         }
 
         private void PasswordInput(object sender, MouseButtonEventArgs e)
         {
-              firstIndicator.Visibility = Visibility.Hidden;
-            secondIndicator.Visibility = Visibility.Visible;
-            fourthIndicator.Visibility = Visibility.Hidden;
-            thirdIndicator.Visibility = Visibility.Visible;
+            PwCh();
         }
         private void ExecuteEnterLevel()
         {
             MessageBox.Show("cddddd");
         }
 
+        public void PwCh()
+        {
+
+            firstIndicator.Visibility = Visibility.Hidden;
+            secondIndicator.Visibility = Visibility.Visible;
+            fourthIndicator.Visibility = Visibility.Hidden;
+            thirdIndicator.Visibility = Visibility.Visible;
+        }
+        public void EmCh()
+        {
+
+            firstIndicator.Visibility = Visibility.Visible;
+            secondIndicator.Visibility = Visibility.Hidden;
+            fourthIndicator.Visibility = Visibility.Visible;
+            thirdIndicator.Visibility = Visibility.Hidden;
+        }
+        private void EmailInput(object sender, TextChangedEventArgs e)
+        {
+            EmCh();
+        }
+
+        private void PasswordChanged(object sender, TextChangedEventArgs e)
+        {
+            PwCh();
+        }
     }
 }
