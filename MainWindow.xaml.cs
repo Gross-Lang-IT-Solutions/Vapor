@@ -12,6 +12,11 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Navigation;
 using System.Windows.Shapes;
+using System.ComponentModel;
+using System.Data;
+using System.Drawing;
+using System.Diagnostics;
+
 
 namespace Vapor
 {
@@ -23,21 +28,8 @@ namespace Vapor
         public MainWindow()
         {
             InitializeComponent();
-            emailInput.AddHandler(FrameworkElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(EmailInput), true);
-            passwordInput.AddHandler(FrameworkElement.MouseLeftButtonDownEvent, new MouseButtonEventHandler(PasswordInput), true);
-            firstIndicator.Visibility = Visibility.Hidden;
+             firstIndicator.Visibility = Visibility.Hidden;
             thirdIndicator.Visibility = Visibility.Hidden;
-        }
-        private void EmailInput(object sender, MouseButtonEventArgs e)
-        {
-
-            EmCh();
-
-        }
-
-        private void PasswordInput(object sender, MouseButtonEventArgs e)
-        {
-            PwCh();
         }
         private void ExecuteEnterLevel()
         {
@@ -60,14 +52,30 @@ namespace Vapor
             fourthIndicator.Visibility = Visibility.Visible;
             thirdIndicator.Visibility = Visibility.Hidden;
         }
-        private void EmailInput(object sender, TextChangedEventArgs e)
+        private void PasswordChanged(object sender, RoutedEventArgs e)
+        {
+            PwCh();
+        }
+
+        private void emailInput_GotFocus(object sender, RoutedEventArgs e)
         {
             EmCh();
         }
 
-        private void PasswordChanged(object sender, TextChangedEventArgs e)
+        private void Button_Click_1(object sender, RoutedEventArgs e)
         {
-            PwCh();
+
+            try
+            {
+                Process.Start("CMD.exe", "/C start msedge https://github.com");
+            }
+            catch { MessageBox.Show("Sie haben kein Edge auf ihren Gerät daher funktioniert es nicht."); }
         }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
     }
 }
