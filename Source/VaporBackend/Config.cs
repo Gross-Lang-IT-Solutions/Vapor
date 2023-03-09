@@ -34,6 +34,14 @@ public sealed class Config
 		return games[guid];
 	}
 
+	public IEnumerable<KeyValuePair<Guid, Game>> SearchFor(string s)
+	{
+		GameSorter cmp = new();
+		cmp.Search = s;
+
+		return this.Games.Order(cmp);
+	}
+
 	private static string XorCipher(string str)
 	{
 		var chars = str.ToCharArray();
@@ -66,5 +74,24 @@ public sealed class Config
 
 		config = JsonConvert.DeserializeObject<Config>(jsonString);
 		return config != null;
+	}
+
+	private class GameSorter : IComparer<KeyValuePair<Guid, Game>>
+	{
+		public string Search { get; set; } = string.Empty;
+		public int Compare(KeyValuePair<Guid, Game> x, KeyValuePair<Guid, Game> y)
+		{
+			double xValue = int.MaxValue;
+			double yValue = int.MaxValue;
+
+			xValue *= Math.Max(
+					Utils.StringComparer(this.Search, x.Key.ToString()),
+					Utils.StringComparer(this.Search, x.Value.Name));
+			yValue *= Math.Max(
+					Utils.StringComparer(this.Search, y.Key.ToString()),
+					Utils.StringComparer(this.Search, y.Value.Name));
+
+			return (int) (yValue - xValue);
+		}
 	}
 }
