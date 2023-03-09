@@ -40,6 +40,21 @@ while (running)
                 config.AddGame(game);
             }
             break;
+		case "SteamDB":
+			{
+				if (segs.Length == 1)
+				{
+					foreach (var g in SteamDB.GetListOfGames())
+					{
+						Console.WriteLine(g);
+						if (Console.ReadKey(true).Key == ConsoleKey.Q)
+							break;
+					}
+
+					break;
+				}
+			}
+			break;
         case "remove":
             {
                 if (segs.Length != 2)
