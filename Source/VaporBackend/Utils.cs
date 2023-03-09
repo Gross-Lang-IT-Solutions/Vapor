@@ -13,45 +13,21 @@ public static class Utils
 		if (b == string.Empty)
 			return 0;
 
-		Dictionary<char, int> aStringContent = new();
-		Dictionary<char, int> bStringContent = new();
-		{
-			Action<Dictionary<char, int>, string> populate = (d, s) => 
-			{
-				foreach (var c in s)
-				{
-					char u = char.ToUpper(c);
-					d[u] = d.ContainsKey(u) ?
-						d[u] + 1 : 1;
-				}
-			};
-
-			populate(aStringContent, a);
-			populate(bStringContent, b);
-		}
+		StringBuilder stringA = new(a.ToUpper());
+		StringBuilder stringB = new(b.ToUpper());
 
 		Dictionary<char, int> difference = new();
 
-		foreach (var kvp in aStringContent)
+		foreach (var c in stringA.ToString())
 		{
-			if (!bStringContent.ContainsKey(kvp.Key))
-				continue;
-
-			difference[kvp.Key] = kvp.Value - bStringContent[kvp.Key];
+			difference[c] = difference.ContainsKey(c) ?
+				difference[c] + 1 : 1;
 		}
 
-		StringBuilder stringA = new();
-		StringBuilder stringB = new();
+		foreach (var c in stringB.ToString())
 		{
-			Action<StringBuilder, string> populate = (sb, s) =>
-			{
-				foreach (var c in s)
-					if (difference.ContainsKey(char.ToUpper(c)))
-						sb.Append(char.ToUpper(c));
-			};
-
-			populate(stringA, a);
-			populate(stringB, b);
+			difference[c] = difference.ContainsKey(c) ?
+				difference[c] - 1 : -1;
 		}
 
 		for (int i = 0; i < Math.Min(stringA.Length, stringB.Length); )
