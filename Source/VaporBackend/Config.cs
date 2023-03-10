@@ -42,21 +42,11 @@ public sealed class Config
 		return this.Games.Order(cmp);
 	}
 
-	private static string XorCipher(string str)
-	{
-		var chars = str.ToCharArray();
-
-		for (var i = 0; i < str.Length; i++)
-			chars[i] = (char)(chars[i] ^ 0xABCD);
-
-		return new string(chars);
-	}
-
 	public void Save(string filePath)
 	{
 		var jsonString = JsonConvert.SerializeObject(this);
 
-		jsonString = XorCipher(jsonString);
+		jsonString = Utils.XorCipher(jsonString);
 
 		File.WriteAllText(filePath, jsonString);
 	}
@@ -70,7 +60,7 @@ public sealed class Config
 		}
 
 		var jsonString = File.ReadAllText(filePath);
-		jsonString = XorCipher(jsonString);
+		jsonString = Utils.XorCipher(jsonString);
 
 		config = JsonConvert.DeserializeObject<Config>(jsonString);
 		return config != null;
@@ -84,12 +74,8 @@ public sealed class Config
 			double xValue = int.MaxValue;
 			double yValue = int.MaxValue;
 
-			xValue *= Math.Max(
-					Utils.StringComparer(this.Search, x.Key.ToString()),
-					Utils.StringComparer(this.Search, x.Value.Name));
-			yValue *= Math.Max(
-					Utils.StringComparer(this.Search, y.Key.ToString()),
-					Utils.StringComparer(this.Search, y.Value.Name));
+			xValue *= Utils.StringComparer(this.Search, x.Value.Name);
+			yValue *= Utils.StringComparer(this.Search, y.Value.Name);
 
 			return (int) (yValue - xValue);
 		}

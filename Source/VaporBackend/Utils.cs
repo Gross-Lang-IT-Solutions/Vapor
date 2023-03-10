@@ -4,6 +4,15 @@ namespace Vapor;
 
 public static class Utils
 {
+	public static string XorCipher(string str)
+	{
+		var chars = str.ToCharArray();
+
+		for (var i = 0; i < str.Length; i++)
+			chars[i] = (char)(chars[i] ^ 0xABCD);
+
+		return new string(chars);
+	}
 	public static double StringComparer(string a, string b)
 	{
 		if (a == b)
