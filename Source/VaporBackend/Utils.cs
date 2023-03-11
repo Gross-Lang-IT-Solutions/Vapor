@@ -98,6 +98,11 @@ public static class Utils
 			}
 		}
 
+		if (stringA.Length > Math.Min(stringA.Length, stringB.Length))
+				stringA.Remove(stringB.Length, stringA.Length - stringB.Length);
+		else if (stringB.Length > Math.Min(stringA.Length, stringB.Length))
+			stringB.Remove(stringA.Length, stringB.Length - stringA.Length);
+
 		double similarity = 0;
 		similarity += (double) stringA.Length / a.Length;
 		similarity += (double) stringB.Length / b.Length;
