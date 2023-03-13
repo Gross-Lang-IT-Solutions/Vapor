@@ -24,6 +24,39 @@ public static class SteamDB
 		return apps;
 	}
 
+	public static IEnumerable<GameInfo> GetInfos(string name)
+	{
+		GameAppIDPair[] lut = GetListOfGames().ToArray();
+		(string, string) last = (string.Empty, string.Empty);
+		try
+		{
+		Array.Sort<GameAppIDPair>(lut, (x, y) =>
+				{
+					last = (x.name, y.name);
+					double vx = Utils.StringComparer(name, x.name) * int.MaxValue;
+					double vy = Utils.StringComparer(name, y.name) * int.MaxValue;
+
+					return (int)(vy - vx);
+				});
+		}
+		finally
+		{
+			Console.WriteLine("Hello");
+			Console.WriteLine($"{last.Item1} {last.Item2}");
+		}
+
+		foreach (var p in lut)
+		{
+			var gameInfo = GetInfo(p.appid);
+			if (gameInfo is null)
+				continue;
+
+			yield return gameInfo;
+		}
+
+		yield break;
+	}
+
 	public static GameInfo? GetInfo(int appID)
 	{
 		GameInfoQuery? query;
