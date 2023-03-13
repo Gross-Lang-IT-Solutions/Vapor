@@ -42,16 +42,33 @@ while (running)
             break;
 		case "SteamDB":
 			{
-				if (segs.Length == 1)
+				switch (segs.Length)
 				{
-					foreach (var g in SteamDB.GetListOfGames())
-					{
-						Console.WriteLine(g);
-						if (Console.ReadKey(true).Key == ConsoleKey.Q)
-							break;
-					}
+					case <= 1:
+						foreach (var g in SteamDB.GetListOfGames())
+						{
+							Console.WriteLine(g);
+							if (Console.ReadKey(true).Key == ConsoleKey.Q)
+								break;
+						}
+						break;
 
-					break;
+					case <= 2:
+						int appid;
+						if (!int.TryParse(segs[1], out appid))
+							goto default;
+
+						Console.WriteLine(SteamDB.GetInfo(appid));
+						break;
+
+					default:
+						foreach (var g in SteamDB.GetInfos(string.Join(' ', segs[1..^0])))
+						{
+							Console.WriteLine(g);
+							if (Console.ReadKey(true).Key == ConsoleKey.Q)
+								break;
+						}
+						break;
 				}
 			}
 			break;
