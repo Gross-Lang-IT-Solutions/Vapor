@@ -17,7 +17,19 @@
             <Button x:Name="addButton" Content="Add" Canvas.Top="129" HorizontalAlignment="Center" VerticalAlignment="Top" Width="168" Height="45" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F"/>
             <Button x:Name="deleteButton" Content="Delete" Canvas.Top="195" Width="168" Height="45" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F"/>
             <Button x:Name="detailsButton" Content="Details" Canvas.Top="259" Width="168" Height="45" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F"/>
-            <Button x:Name="startButton" Content="RUN" Canvas.Top="366" Width="168" Height="68" HorizontalAlignment="Center" VerticalAlignment="Bottom" Foreground="White" BorderBrush="#FF1F1F1F">
+        </Canvas>
+        <Canvas Margin="152,0,0,0" Grid.ColumnSpan="3" OpacityMask="Black" Background="#FF1F1F1F" Height="46" VerticalAlignment="Top">
+            <Expander Height="100" Header="Sort" Width="133" HorizontalAlignment="Left" Canvas.Left="32" Canvas.Top="8" VerticalAlignment="Top" Foreground="White">
+                <Grid Background="#FFE5E5E5" Margin="0,10,0,-31" Width="100">
+                    <Button Content="Button" Margin="0,10,2,0" VerticalAlignment="Top" Height="15"/>
+                    <Button Content="Button" Margin="1,30,1,0" VerticalAlignment="Top" Height="15"/>
+                    <Button Content="Button" Margin="1,50,1,0" VerticalAlignment="Top" Height="15"/>
+                    <Button Content="Button" Margin="2,70,0,0" VerticalAlignment="Top" Height="15"/>
+                </Grid>
+            </Expander>
+        </Canvas>
+        <DockPanel LastChildFill="False" Margin="0,358,194,0">
+            <Button x:Name="startButton" Content="RUN" Foreground="White" BorderBrush="#FF1F1F1F" UseLayoutRounding="False" DockPanel.Dock="Left" Width="167" Height="65" VerticalAlignment="Bottom">
                 <Button.Background>
                     <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
                         <GradientStop Color="Black"/>
@@ -25,8 +37,7 @@
                     </LinearGradientBrush>
                 </Button.Background>
             </Button>
-        </Canvas>
-        <Canvas Margin="152,0,0,388" Grid.ColumnSpan="3" OpacityMask="Black" Background="#FF1F1F1F"/>
+        </DockPanel>
     </Grid>
 </Window>
 

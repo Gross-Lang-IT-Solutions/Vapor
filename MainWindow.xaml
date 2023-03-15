@@ -34,7 +34,7 @@
             <TextBlock HorizontalAlignment="Left" Margin="31,29,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Foreground="White" FontFamily="Arial"/>
             <TextBlock HorizontalAlignment="Left" Height="20" Margin="31,86,0,0" TextWrapping="Wrap" Foreground="White" FontFamily="Arial" VerticalAlignment="Top" Width="111"><Run Language="de-de" Text="Password:"/><LineBreak/><Run Language="de-de"/></TextBlock>
             <Button Content="Register" HorizontalAlignment="Left" Margin="31,155,0,0" VerticalAlignment="Top" Background="#FC4A4849" Width="94" Foreground="White" FontFamily="Arial" BorderBrush="#00707070" Height="29" FontSize="14"/>
-            <Button Content="Login" HorizontalAlignment="Left" Margin="142,155,0,0" VerticalAlignment="Top" Background="#FF8A04F2" Foreground="White" Width="216" FontFamily="Arial" BorderBrush="#00707070" Height="29" FontSize="14"/>
+            <Button Content="Login" HorizontalAlignment="Left" Margin="142,155,0,0" VerticalAlignment="Top" Background="#FF8A04F2" Foreground="White" Width="216" FontFamily="Arial" BorderBrush="#00707070" Height="29" FontSize="14" Click="Button_Click_2"/>
             <TextBlock HorizontalAlignment="Left" Margin="31,229,0,0" TextWrapping="Wrap" Text="You have forgotten your Password? " VerticalAlignment="Top" Foreground="White" FontFamily="Arial"/>
             <Button Content="Click Here ..." HorizontalAlignment="Left" Margin="285,225,0,0" VerticalAlignment="Top" Background="#00DDDDDD" Foreground="#FF8A04F2" FontFamily="Arial" Click="Button_Click_1" BorderBrush="#00707070"/>
 

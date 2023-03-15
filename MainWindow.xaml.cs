@@ -77,5 +77,12 @@ namespace Vapor
             Environment.Exit(0);
         }
 
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            Start start = new Start();
+            start.Show();
+            this.Close();
+
+        }
     }
 }
