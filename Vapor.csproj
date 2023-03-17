@@ -2,7 +2,7 @@
 
   <PropertyGroup>
     <OutputType>WinExe</OutputType>
-    <TargetFramework>net6.0-windows</TargetFramework>
+    <TargetFramework>net7.0-windows</TargetFramework>
     <Nullable>enable</Nullable>
     <UseWPF>true</UseWPF>
   </PropertyGroup>
@@ -10,6 +10,10 @@
   <ItemGroup>
     <None Remove="Frame 2.png" />
     <None Remove="VaporIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vapor-backend_dev\Source\VaporBackend\VaporBackend.csproj" />
   </ItemGroup>
 
   <ItemGroup>
