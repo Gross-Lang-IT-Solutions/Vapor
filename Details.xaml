@@ -1,13 +1,188 @@
 ﻿<Window x:Class="Vapor.Details"
-        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
-        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Vapor"
         mc:Ignorable="d"
-        Title="Details" Height="450" Width="800">
+        Title="Game Details" Height="450" Width="800">
     <Grid Background="#FF1B1B1B">
-        <Label Content="Details" HorizontalAlignment="Left" Margin="31,25,0,0" VerticalAlignment="Top" Width="196" Foreground="White" FontSize="18"/>
-
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="2*" />
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="Auto" />
+        </Grid.RowDefinitions>
+        <Image Grid.ColumnSpan="2" Source="{Binding GameImagePath}" HorizontalAlignment="Center" VerticalAlignment="Center" Margin="10" >
+            <Image.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </Image.OpacityMask>
+        </Image>
+        <StackPanel Orientation="Vertical" Margin="10,20,277,0" Grid.ColumnSpan="2">
+            <StackPanel.OpacityMask>
+                <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                    <GradientStop Color="Black"/>
+                    <GradientStop Color="White" Offset="1"/>
+                </LinearGradientBrush>
+            </StackPanel.OpacityMask>
+            <TextBlock Text="{Binding GameName}" FontSize="28" FontWeight="Bold" Margin="0 0 0 10" >
+                <TextBlock.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </TextBlock.OpacityMask>
+            </TextBlock>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <TextBlock Text="Publisher: " FontWeight="Bold" Foreground="White" FontSize="18" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+                <TextBlock Text="{Binding GamePublisher}" Margin="5 0 0 0" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <TextBlock Text="Category: " FontWeight="Bold" Foreground="White" FontSize="18" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+                <TextBlock Text="{Binding GameCategory}" Margin="5 0 0 0" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <TextBlock Text="Age rating: " FontWeight="Bold" Foreground="White" FontSize="18" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+                <TextBlock Text="{Binding GameAgeRating}" Margin="5 0 0 0" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <TextBlock Text="Install date: " FontWeight="Bold" Foreground="White" FontSize="18" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+                <TextBlock Text="{Binding GameInstallDate}" Margin="5 0 0 0" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <TextBlock Text="Last played: " FontWeight="Bold" Foreground="White" FontSize="18" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+                <TextBlock Text="{Binding GameLastPlayed}" Margin="5 0 0 0" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+            </StackPanel>
+            <StackPanel Orientation="Horizontal">
+                <StackPanel.OpacityMask>
+                    <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                        <GradientStop Color="Black"/>
+                        <GradientStop Color="White" Offset="1"/>
+                    </LinearGradientBrush>
+                </StackPanel.OpacityMask>
+                <TextBlock Text="Play time: " FontWeight="Bold" Foreground="White" RenderTransformOrigin="0.507,4.448" Height="26" FontSize="18" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+                <TextBlock Text="{Binding GamePlayTime}" Margin="5 0 0 0" >
+                    <TextBlock.OpacityMask>
+                        <LinearGradientBrush EndPoint="0.5,1" StartPoint="0.5,0">
+                            <GradientStop Color="Black"/>
+                            <GradientStop Color="White" Offset="1"/>
+                        </LinearGradientBrush>
+                    </TextBlock.OpacityMask>
+                </TextBlock>
+            </StackPanel>
+        </StackPanel>
+        <Button Grid.Column="1" Grid.Row="1" Content="OK" Width="100" Margin="412,10,21,10" Click="OKButton_Click" />
     </Grid>
 </Window>

@@ -40,7 +40,7 @@ namespace Vapor
         }
         private void showAllGames()
         {
-            foreach (var g in config.Games.OrderBy(g => g.Value.Name)) showGames(Convert.ToString(g.Key));
+            foreach (var g in config.Games.OrderBy(g => g.Value.Name)) showGames(Convert.ToString(g.Key)); //Sort games
 
         }
         private void showGames(string key)
@@ -107,12 +107,6 @@ namespace Vapor
 
             guid = Guid.Parse(index);
         }
-        private void gameList_SelectionChanged(object sender, SelectionChangedEventArgs e)
-        {
-        }
-        private void startButton_Click(object sender, RoutedEventArgs e)
-        {
-        }
 
         private void startButton_Click_1(object sender, RoutedEventArgs e)
         {
@@ -141,5 +135,79 @@ namespace Vapor
             start.Show();
 
         }
+
+        private void detailsButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
+        private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
+        {
+            if (searchTextBox == null || config == null)
+            {
+                // handle the null case
+                return;
+            }
+            string searchText = searchTextBox.Text.ToLower();
+
+            if (string.IsNullOrEmpty(searchText))
+            {
+                showAllGames();
+            }
+            else
+            {
+                canvas.Children.Clear();
+
+                var hexagonPoints = new Point[] {
+            new Point(50, 0), new Point(100, 25), new Point(100, 75),
+            new Point(50, 100), new Point(0, 75), new Point(0, 25)
+        };
+
+                int hexPerRow = Math.Min(config.Games.Count, 5);
+                int index = 0;
+
+                foreach (var game in config.Games.OrderBy(g => g.Value.Name))
+                {
+                    if (game.Value.Name.ToLower().Contains(searchText))
+                    {
+                        int row = index / hexPerRow;
+                        int col = index % hexPerRow;
+                        double x = col * 100 + (row % 2 == 0 ? 50 : 0);
+                        double y = row * 87;
+                        var hexagon = CreateHexagon(hexagonPoints);
+                        Canvas.SetLeft(hexagon, x);
+                        Canvas.SetTop(hexagon, y);
+                        canvas.Children.Add(hexagon);
+                        var button = new Button();
+                        button.Content = game.Key;
+                        button.Width = 110;
+                        button.Height = 100;
+                        Canvas.SetLeft(button, x);
+                        Canvas.SetTop(button, y);
+                        button.Click += (sender, e) => Button_Click(Convert.ToString(button.Content));
+                        button.Opacity = 0;
+                        canvas.Children.Add(button);
+
+                        index++;
+                    }
+                }
+            }
+        }
+
+
+        
+
+        private void ascendingButton_Click(object sender, RoutedEventArgs e)
+        {
+           
+        }
+
+        private void descendingButton_Click(object sender, RoutedEventArgs e)
+        {
+            
+        }
+
     }
 }
+        
+ 

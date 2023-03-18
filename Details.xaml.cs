@@ -19,9 +19,15 @@ namespace Vapor
     /// </summary>
     public partial class Details : Window
     {
+        
         public Details()
         {
             InitializeComponent();
+           
+        }
+        private void OKButton_Click(object sender, RoutedEventArgs e)
+        {
+            this.Close();
         }
     }
 }
