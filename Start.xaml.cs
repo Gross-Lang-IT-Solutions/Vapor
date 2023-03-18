@@ -38,12 +38,79 @@ namespace Vapor
 
             showAllGames();
         }
+        public enum SortOption
+        {
+            NameAscending,
+            NameDescending,
+            DateAddedAscending,
+            DateAddedDescending
+        }
+
+        private SortOption currentSortOption = SortOption.NameAscending;
+
         private void showAllGames()
         {
-            foreach (var g in config.Games.OrderBy(g => g.Value.Name)) showGames(Convert.ToString(g.Key)); //Sort games
+            IEnumerable<KeyValuePair<Guid, Game>> games = config.Games;
 
+            switch (currentSortOption)
+            {
+                case SortOption.NameAscending:
+                    games = games.OrderBy(g => g.Value.Name);
+                    break;
+                case SortOption.NameDescending:
+                    games = games.OrderByDescending(g => g.Value.Name);
+                    break;
+                case SortOption.DateAddedAscending:
+                    games = games.OrderBy(g => g.Value.InstallDateTime);
+                    break;
+                case SortOption.DateAddedDescending:
+                    games = games.OrderByDescending(g => g.Value.InstallDateTime);
+                    break;
+            }
+
+            showGames(games);
         }
-        private void showGames(string key)
+
+
+        private void ascendingButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentSortOption = SortOption.NameAscending;
+            showAllGames();
+            var button = sender as Button;
+          
+        }
+
+        private void descendingButton_Click(object sender, RoutedEventArgs e)
+        {
+            currentSortOption = SortOption.NameDescending;
+            showAllGames();
+            
+        }
+        private void dateAddedAscending_Click(object sender, RoutedEventArgs e)
+        {
+            currentSortOption = SortOption.DateAddedAscending;
+            showAllGames();
+            
+        }
+
+        private void dateAddedDescending_Click(object sender, RoutedEventArgs e)
+        {
+            // Definition der Variable "expander"
+            Expander expander = new Expander();
+
+            // Initialisierung der Variablen "expander"
+            expander.Header = "Expander Header";
+            expander.Content = "Expander Content";
+
+            // Verwendung der Variablen "expander"
+          
+
+            currentSortOption = SortOption.DateAddedDescending;
+            showAllGames();
+            expander.IsExpanded = false;
+        }
+
+        private void showGames(IEnumerable<KeyValuePair<Guid, Game>> games)
         {
             canvas.Children.Clear(); // Remove all existing hexagons and buttons from the canvas
 
@@ -51,9 +118,9 @@ namespace Vapor
         new Point(50, 0), new Point(100, 25), new Point(100, 75),
         new Point(50, 100), new Point(0, 75), new Point(0, 25)
     };
-            int hexPerRow = Math.Min(config.Games.Count, 5);
+            int hexPerRow = Math.Min(games.Count(), 5);
             int index = 0;
-            foreach (var game in config.Games.OrderBy(g => g.Value.Name))
+            foreach (var game in games)
             {
                 int row = index / hexPerRow;
                 int col = index % hexPerRow;
@@ -76,6 +143,10 @@ namespace Vapor
                 index++;
             }
         }
+
+
+
+
         private Polygon CreateHexagon(Point[] points)
         {
             var hexagon = new Polygon();
@@ -135,14 +206,32 @@ namespace Vapor
             start.Show();
 
         }
-
-        private void detailsButton_Click(object sender, RoutedEventArgs e)
+        private void ShowGameDetails(Game game)
         {
-            
+            string message = $"Name: {game.Name}\n" +
+                             $"Publisher: {game.Publisher}\n" +
+                             $"Install Date: {game.InstallDateTime}\n" +
+                             $"PlayTime : {game.PlayTime}\n" +
+                             $"LastPlayedDateTime : {game.LastPlayedDateTime}\n" +
+                             $"Category : {game.Category}\n" +
+                             $"AgeRating : {game.AgeRating}\n" +
+                             $"Executable Path: {game.ExecutablePath}";
+            MessageBox.Show(message, "Game Details", MessageBoxButton.OK, MessageBoxImage.Information);
         }
+
+        private void detailsButton_Click(object sender, RoutedEventArgs e )
+        {
+            string index = Convert.ToString(guid);
+            guid = Guid.Parse(index);
+            var game = config.Games[guid];
+            ShowGameDetails(game);
+        }
+        
+
 
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
+            
             if (searchTextBox == null || config == null)
             {
                 // handle the null case
@@ -193,19 +282,24 @@ namespace Vapor
                 }
             }
         }
-
-
-        
-
-        private void ascendingButton_Click(object sender, RoutedEventArgs e)
+        private void RemovePlaceholderText(object sender, RoutedEventArgs e)
         {
-           
+            if (searchTextBox.Text == "Search...")
+            {
+                searchTextBox.Text = "";
+            }
         }
 
-        private void descendingButton_Click(object sender, RoutedEventArgs e)
+        public void Expander_Expanded(object sender, RoutedEventArgs e)
+        {
+            // Code, der ausgeführt werden soll, wenn der Expander geöffnet wird
+        }
+        public void Expander_Collapsed(object sender, RoutedEventArgs e)
         {
             
         }
+
+
 
     }
 }
