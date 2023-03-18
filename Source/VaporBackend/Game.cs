@@ -1,4 +1,5 @@
-﻿using Newtonsoft.Json;
+﻿using System.Diagnostics;
+using Newtonsoft.Json;
 
 namespace Vapor;
 
@@ -38,6 +39,40 @@ public class Game
         ExecutablePath = executablePath;
         InstallDateTime = installDateTime;
     }
+
+	public void Start()
+	{
+		try
+		{
+			using var process = new Process();
+			process.StartInfo.FileName = ExecutablePath;
+
+			DateTime start = DateTime.Now;
+			process.Start();
+			process.WaitForExit();
+			PlayTime.Add(DateTime.Now - start);
+		} catch (Exception e)
+		{
+			Console.WriteLine(e.Message);
+		}
+	}
+
+	public async Task StartAsync()
+	{
+		try
+		{
+			using var process = new Process();
+			process.StartInfo.FileName = ExecutablePath;
+
+			DateTime start = DateTime.Now;
+			process.Start();
+			await process.WaitForExitAsync();
+			PlayTime.Add(DateTime.Now - start);
+		} catch (Exception e)
+		{
+			Console.WriteLine(e.Message);
+		}
+	}
 
     public Game Copy() => new(Name, ExecutablePath, InstallDateTime)
     {
