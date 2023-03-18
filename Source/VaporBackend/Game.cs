@@ -47,10 +47,10 @@ public class Game
 			using var process = new Process();
 			process.StartInfo.FileName = ExecutablePath;
 
-			DateTime start = DateTime.Now;
+			LastPlayedDateTime = DateTime.Now;
 			process.Start();
 			process.WaitForExit();
-			PlayTime.Add(DateTime.Now - start);
+			PlayTime.Add(DateTime.Now - LastPlayedDateTime);
 		} catch (Exception e)
 		{
 			Console.WriteLine(e.Message);
@@ -64,10 +64,10 @@ public class Game
 			using var process = new Process();
 			process.StartInfo.FileName = ExecutablePath;
 
-			DateTime start = DateTime.Now;
+			LastPlayedDateTime = DateTime.Now;
 			process.Start();
 			await process.WaitForExitAsync();
-			PlayTime.Add(DateTime.Now - start);
+			PlayTime.Add(DateTime.Now - LastPlayedDateTime);
 		} catch (Exception e)
 		{
 			Console.WriteLine(e.Message);
