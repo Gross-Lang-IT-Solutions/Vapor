@@ -36,10 +36,7 @@ public sealed class Config
 
 	public IEnumerable<KeyValuePair<Guid, Game>> SearchFor(string s)
 	{
-		GameSorter cmp = new();
-		cmp.Search = s;
-
-		return this.Games.Order(cmp);
+		return this.Games.OrderByDescending(x => (int) (Utils.StringComparer(x.Value.Name, s) * int.MaxValue));
 	}
 
 	public void Save(string filePath)
@@ -64,20 +61,5 @@ public sealed class Config
 
 		config = JsonConvert.DeserializeObject<Config>(jsonString);
 		return config != null;
-	}
-
-	private class GameSorter : IComparer<KeyValuePair<Guid, Game>>
-	{
-		public string Search { get; set; } = string.Empty;
-		public int Compare(KeyValuePair<Guid, Game> x, KeyValuePair<Guid, Game> y)
-		{
-			double xValue = int.MaxValue;
-			double yValue = int.MaxValue;
-
-			xValue *= Utils.StringComparer(this.Search, x.Value.Name);
-			yValue *= Utils.StringComparer(this.Search, y.Value.Name);
-
-			return (int) (yValue - xValue);
-		}
 	}
 }
