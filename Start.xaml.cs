@@ -45,38 +45,36 @@ namespace Vapor
         }
         private void showGames(string key)
         {
+            canvas.Children.Clear(); // Remove all existing hexagons and buttons from the canvas
+
             var hexagonPoints = new Point[] {
- new Point(50, 0), new Point(100, 25), new Point(100, 75),
- new Point(50, 100), new Point(0, 75), new Point(0, 25)
- };
-            var hexagon = CreateHexagon(hexagonPoints);                 // Compute the position of the new hexagon
+        new Point(50, 0), new Point(100, 25), new Point(100, 75),
+        new Point(50, 100), new Point(0, 75), new Point(0, 25)
+    };
             int hexPerRow = Math.Min(config.Games.Count, 5);
-            int row = (config.Games.Count - 1) / hexPerRow;
-            int col = (config.Games.Count - 1) % hexPerRow;
-            double x = col * 100 + (row % 2 == 0 ? 50 : 0);
-            double y = row * 87;                 // Set the position of the new hexagon
-            Canvas.SetLeft(hexagon, x);
-            Canvas.SetTop(hexagon, y);                 // Add the hexagon shape to the UI
+            int index = 0;
+            foreach (var game in config.Games.OrderBy(g => g.Value.Name))
+            {
+                int row = index / hexPerRow;
+                int col = index % hexPerRow;
+                double x = col * 100 + (row % 2 == 0 ? 50 : 0);
+                double y = row * 87;
+                var hexagon = CreateHexagon(hexagonPoints);
+                Canvas.SetLeft(hexagon, x);
+                Canvas.SetTop(hexagon, y);
+                canvas.Children.Add(hexagon);
+                var button = new Button();
+                button.Content = game.Key;
+                button.Width = 110;
+                button.Height = 100;
+                Canvas.SetLeft(button, x);
+                Canvas.SetTop(button, y);
+                button.Click += (sender, e) => Button_Click(Convert.ToString(button.Content));
+                button.Opacity = 0;
+                canvas.Children.Add(button);
 
-            // Create a new button
-            var button = new Button();
-            button.Content = key;
-            button.Width = 110;
-            button.Height = 100;
-
-
-            Canvas.SetLeft(button, x);
-            Canvas.SetTop(button, y);
-
-            // Add the button click event handler
-            button.Click += (sender, e) => Button_Click(Convert.ToString(button.Content));
-
-            button.Opacity = 0;
-
-            canvas.Children.Add(hexagon);
-            canvas.Children.Add(button);
-            index++;
-
+                index++;
+            }
         }
         private Polygon CreateHexagon(Point[] points)
         {
@@ -119,7 +117,16 @@ namespace Vapor
         private void startButton_Click_1(object sender, RoutedEventArgs e)
         {
 
-            Process.Start(new ProcessStartInfo(config.Games[guid].ExecutablePath));
+            var psi = new ProcessStartInfo(config.Games[guid].ExecutablePath);
+            psi.Verb = "runas"; // add the 'runas' verb to prompt for elevated privileges
+            try
+            {
+                Process.Start(psi);
+            }
+            catch (System.ComponentModel.Win32Exception)
+            {
+                MessageBox.Show("This program must be run as an administrator to start the selected game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
         private void deleteButton_Click(object sender, RoutedEventArgs e)
