@@ -53,6 +53,8 @@ namespace Vapor
 
         private void showAllGames()
         {
+            canvas.Children.Clear();
+
             IEnumerable<KeyValuePair<Guid, Game>> games = config.Games;
 
             switch (currentSortOption)
@@ -228,7 +230,7 @@ namespace Vapor
         // Define the button click event handler
         private void Button_Click(string index)
         {
-            MessageBox.Show(Convert.ToString(index));
+            //MessageBox.Show(Convert.ToString(index));
 
             guid = Guid.Parse(index);
         }
@@ -236,15 +238,21 @@ namespace Vapor
         private void startButton_Click_1(object sender, RoutedEventArgs e)
         {
 
-            var psi = new ProcessStartInfo(config.Games[guid].ExecutablePath);
-            psi.Verb = "runas"; // add the 'runas' verb to prompt for elevated privileges
             try
             {
+
+                var psi = new ProcessStartInfo(config.Games[guid].ExecutablePath);
+                psi.Verb = "runas"; // add the 'runas' verb to prompt for elevated privileges
                 Process.Start(psi);
             }
             catch (System.ComponentModel.Win32Exception)
             {
                 MessageBox.Show("This program must be run as an administrator to start the selected game.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
+            catch
+            {
+                MessageBox.Show("No game selected.", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+
             }
         }
 
@@ -253,11 +261,7 @@ namespace Vapor
             config.RemoveGame(guid);
             config.Save(configFilePath);
 
-            Start start = new Start();
-
-            this.Close();
-
-            start.Show();
+            showAllGames();
 
         }
         private void ShowGameDetails(Game game)
@@ -273,12 +277,16 @@ namespace Vapor
             MessageBox.Show(message, "Game Details", MessageBoxButton.OK, MessageBoxImage.Information);
         }
 
-        private void detailsButton_Click(object sender, RoutedEventArgs e )
+        private void detailsButton_Click(object sender, RoutedEventArgs e)
         {
-            string index = Convert.ToString(guid);
-            guid = Guid.Parse(index);
-            var game = config.Games[guid];
-            ShowGameDetails(game);
+            try
+            {
+                string index = Convert.ToString(guid);
+                guid = Guid.Parse(index);
+                var game = config.Games[guid];
+                ShowGameDetails(game);
+            }
+            catch { MessageBox.Show("No game selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error); };
         }
         
 
@@ -353,8 +361,10 @@ namespace Vapor
             
         }
 
-
-
+        private void Button_Click_1(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
     }
 }
         

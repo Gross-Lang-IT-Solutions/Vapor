@@ -65,11 +65,10 @@ namespace Vapor
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
 
-            try
-            {
-                Process.Start("CMD.exe", "/C start msedge https://github.com");
-            }
-            catch { MessageBox.Show("Sie haben kein Edge auf ihren Gerät daher funktioniert es nicht."); }
+
+            Start start = new Start();
+            start.Show();
+            this.Close();
         }
 
         private void Button_Click(object sender, RoutedEventArgs e)
@@ -83,6 +82,14 @@ namespace Vapor
             start.Show();
             this.Close();
 
+        }
+
+        private void Button_Click_3(object sender, RoutedEventArgs e)
+        {
+
+            Start start = new Start();
+            start.Show();
+            this.Close();
         }
     }
 }

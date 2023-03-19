@@ -13,7 +13,42 @@
             <GradientStop Color="Black" Offset="1"/>
         </LinearGradientBrush>
     </Window.BorderBrush>
-    
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="HoverBrush" Color="#FF1C1C1C"/>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF1C1C1C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF1C1C1C"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ContentPresenter Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource HoverBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource HoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource HoverBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource HoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="border" Value="#FF333333"/>
+                                <Setter Property="BorderBrush" Value="#FF333333"/>
+                                <Setter Property="Foreground" Value="#FFAAAAAA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
     <Grid Margin="0,0,400,0">
         <Grid.RowDefinitions>
             <RowDefinition Height="18*"/>
@@ -33,7 +68,7 @@
             <Rectangle x:Name="fourthIndicator" HorizontalAlignment="Left" Height="3" Margin="31,125,0,0" Stroke="#00D4AAAA" VerticalAlignment="Top" Width="326" Fill="#FC4A4849"/>
             <TextBlock HorizontalAlignment="Left" Margin="31,29,0,0" TextWrapping="Wrap" Text="Username:" VerticalAlignment="Top" Foreground="White" FontFamily="Arial"/>
             <TextBlock HorizontalAlignment="Left" Height="20" Margin="31,86,0,0" TextWrapping="Wrap" Foreground="White" FontFamily="Arial" VerticalAlignment="Top" Width="111"><Run Language="de-de" Text="Password:"/><LineBreak/><Run Language="de-de"/></TextBlock>
-            <Button Content="Register" HorizontalAlignment="Left" Margin="31,155,0,0" VerticalAlignment="Top" Background="#FC4A4849" Width="94" Foreground="White" FontFamily="Arial" BorderBrush="#00707070" Height="29" FontSize="14"/>
+            <Button Content="Register" HorizontalAlignment="Left" Margin="31,155,0,0" VerticalAlignment="Top" Background="#FC4A4849" Width="94" Foreground="White" FontFamily="Arial" BorderBrush="#00707070" Height="29" FontSize="14" Click="Button_Click_3"/>
             <Button Content="Login" HorizontalAlignment="Left" Margin="142,155,0,0" VerticalAlignment="Top" Background="#FF8A04F2" Foreground="White" Width="216" FontFamily="Arial" BorderBrush="#00707070" Height="29" FontSize="14" Click="Button_Click_2"/>
             <TextBlock HorizontalAlignment="Left" Margin="31,229,0,0" TextWrapping="Wrap" Text="You have forgotten your Password? " VerticalAlignment="Top" Foreground="White" FontFamily="Arial"/>
             <Button Content="Click Here ..." HorizontalAlignment="Left" Margin="285,225,0,0" VerticalAlignment="Top" Background="#00DDDDDD" Foreground="#FF8A04F2" FontFamily="Arial" Click="Button_Click_1" BorderBrush="#00707070"/>
