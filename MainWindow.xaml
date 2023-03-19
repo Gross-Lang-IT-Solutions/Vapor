@@ -1,5 +1,4 @@
-﻿
-<Window x:Name="Login" x:Class="Vapor.MainWindow" 
+﻿<Window x:Name="Login" x:Class="Vapor.MainWindow" 
         xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
         xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
@@ -57,7 +56,7 @@
             <RowDefinition Height="77*"/>
             <RowDefinition Height="327*"/>
         </Grid.RowDefinitions>
-        
+
         <Grid Height="100" Width="100" Margin="7,81,-107,83" Grid.Row="4"/>
         <Grid x:Name="grid" Height="266" VerticalAlignment="Top" Margin="0,60,-401,0" Grid.Row="3" Grid.RowSpan="2">
             <TextBox  x:Name="emailInput" HorizontalAlignment="Left" BorderThickness="0" Height="26" Margin="29,43,0,0" TextWrapping="Wrap" VerticalAlignment="Top" Width="328" BorderBrush="#00ABADB3" Background="#FC4A4849" Foreground="White" GotFocus="emailInput_GotFocus" SelectionBrush="#000078D7" />
@@ -89,7 +88,7 @@
         <Button BorderThickness="0" Content="Button" Width="0"/>
         <Button BorderThickness="0" Content="Button" HorizontalAlignment="Left" Height="0" Margin="350,12,0,0" Grid.Row="1" VerticalAlignment="Top" Width="0"/>
         <Grid Width="100" Margin="300,0,-400,263" Grid.RowSpan="5" Height="100" VerticalAlignment="Bottom">
-            <Button x:Name="close" BorderThickness="0" Content="X" HorizontalAlignment="Left" Margin="75,10,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FC4A4849" RenderTransformOrigin="4.725,-9.543" FontWeight="Bold" Click="Button_Click" Cursor="Hand">
+            <Button x:Name="close" BorderThickness="0" Content="X" HorizontalAlignment="Left" Margin="64,0,0,0" VerticalAlignment="Top" FontFamily="Arial" FontSize="16" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FC4A4849" RenderTransformOrigin="4.725,-9.543" FontWeight="Bold" Click="Button_Click" Cursor="Hand" Width="36" Height="30">
                 <Button.Style>
                     <Style/>
                 </Button.Style>

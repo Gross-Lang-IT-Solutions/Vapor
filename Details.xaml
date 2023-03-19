@@ -5,8 +5,45 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Vapor"
         mc:Ignorable="d"
-             Title="Add Game" Height="150" Width="350">
-    <Grid>
+             Title="Add Game" Height="271" Width="440" Icon="/VaporIcon.png" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" Background="#FF1B1B1B">
+
+    <Window.Resources>
+        <SolidColorBrush x:Key="HoverBrush" Color="#FF1C1C1C"/>
+        <Style TargetType="Button">
+            <Setter Property="Background" Value="#FF1C1C1C"/>
+            <Setter Property="Foreground" Value="White"/>
+            <Setter Property="BorderBrush" Value="#FF1C1C1C"/>
+            <Setter Property="Template">
+                <Setter.Value>
+                    <ControlTemplate TargetType="{x:Type Button}">
+                        <Border x:Name="border" Background="{TemplateBinding Background}" BorderBrush="{TemplateBinding BorderBrush}" BorderThickness="{TemplateBinding BorderThickness}" SnapsToDevicePixels="True">
+                            <ContentPresenter Margin="2" HorizontalAlignment="Center" VerticalAlignment="Center" SnapsToDevicePixels="{TemplateBinding SnapsToDevicePixels}" RecognizesAccessKey="True"/>
+                        </Border>
+                        <ControlTemplate.Triggers>
+                            <Trigger Property="IsMouseOver" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource HoverBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource HoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsPressed" Value="True">
+                                <Setter Property="Background" TargetName="border" Value="{StaticResource HoverBrush}"/>
+                                <Setter Property="Foreground" Value="White"/>
+                                <Setter Property="BorderBrush" Value="{StaticResource HoverBrush}"/>
+                            </Trigger>
+                            <Trigger Property="IsEnabled" Value="False">
+                                <Setter Property="Background" TargetName="border" Value="#FF333333"/>
+                                <Setter Property="BorderBrush" Value="#FF333333"/>
+                                <Setter Property="Foreground" Value="#FFAAAAAA"/>
+                            </Trigger>
+                        </ControlTemplate.Triggers>
+                    </ControlTemplate>
+                </Setter.Value>
+            </Setter>
+        </Style>
+    </Window.Resources>
+
+    <Grid Height="270" VerticalAlignment="Top">
+
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
             <RowDefinition Height="Auto"/>
@@ -18,20 +55,33 @@
             <ColumnDefinition Width="Auto"/>
             <ColumnDefinition Width="*"/>
         </Grid.ColumnDefinitions>
-        <Label Grid.Row="0" Grid.Column="0" Content="Game name:"/>
-        <TextBox Grid.Row="0" Grid.Column="1" x:Name="gameNameTextBox"/>
-        <Label Grid.Row="1" Grid.Column="0" Content="Age rating:"/>
-        <ComboBox Grid.Row="1" Grid.Column="1" x:Name="ageRatingComboBox">
-            <ComboBoxItem Content="0"/>
-            <ComboBoxItem Content="6"/>
-            <ComboBoxItem Content="12"/>
-            <ComboBoxItem Content="16"/>
-            <ComboBoxItem Content="18"/>
-            <ComboBoxItem Content="Other"/>
-        </ComboBox>
-        <Label Grid.Row="2" Grid.Column="0" Content="Publisher:"/>
-        <TextBox Grid.Row="2" Grid.Column="1" x:Name="publisherTextBox"/>
-        <Button Grid.Row="4" Grid.Column="1" Content="OK" IsDefault="True" Click="okButton_Click"/>
-        <Button Grid.Row="4" Grid.Column="0" Content="Cancel" IsCancel="True"/>
+        <Label Content="Name:" HorizontalAlignment="Left" Margin="10,17,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Publisher:" HorizontalAlignment="Left" Margin="10,43,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Install Date:" HorizontalAlignment="Left" Margin="10,69,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Play Time:" HorizontalAlignment="Left" Margin="10,94,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label HorizontalAlignment="Left" Margin="10,121,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Last played:" HorizontalAlignment="Left" Margin="10,121,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Category:" HorizontalAlignment="Left" Margin="10,147,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Age rating:" HorizontalAlignment="Left" Margin="10,173,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White"/>
+        <Label Content="Path:" HorizontalAlignment="Left" Margin="10,199,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" RenderTransformOrigin="0.473,0.553"/>
+        <Label x:Name="lbl" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,17,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,43,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy1" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,69,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy2" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,94,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy3" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,121,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy4" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,147,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy6" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,173,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label x:Name="lbl_Copy7" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,199,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
+        <Label Grid.Column="1" Content="Game details:" HorizontalAlignment="Left" Margin="59,0,0,0" VerticalAlignment="Center" Foreground="White"/>
+        <Button x:Name="close" BorderThickness="0" Content="X" HorizontalAlignment="Left" Margin="404,0,0,0" VerticalAlignment="Center" FontFamily="Arial" FontSize="16" Background="#00DDDDDD" BorderBrush="#00707070" Foreground="#FC4A4849" RenderTransformOrigin="4.725,-9.543" FontWeight="Bold" Click="Button_Click" Cursor="Hand" Width="36" Height="36" Grid.Column="1">
+            <Button.Style>
+                <Style/>
+            </Button.Style>
+        </Button>
+        <Image Height="32" Margin="16,0,392,0" VerticalAlignment="Center" RenderTransformOrigin="0.509,-0.236" Source="/VaporIcon.png" Grid.ColumnSpan="2" Stretch="Fill">
+            <Image.OpacityMask>
+                <ImageBrush ImageSource="/VaporIcon.png"/>
+            </Image.OpacityMask>
+        </Image>
     </Grid>
 </Window>

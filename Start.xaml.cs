@@ -301,16 +301,31 @@ namespace Vapor
         {
             try
             {
+                var game = config.Games[guid];
+
+                // Erstellen Sie eine Instanz des zweiten Fensters
+                Details details = new Details(game.Name, 
+                    game.Publisher, 
+                    game.InstallDateTime, 
+                    game.PlayTime,
+                    game.LastPlayedDateTime,
+                    game.Category,
+                    game.AgeRating,
+                    game.ExecutablePath);
+
+
+            // Setzen Sie das Hauptfenster als Eigentümer des zweiten Fensters
+            details.Owner = this;
+
+            // Zeigen Sie das zweite Fenster als Modal-Dialog an
+            details.ShowDialog();
+            
                 string index = Convert.ToString(guid);
                 guid = Guid.Parse(index);
-                var game = config.Games[guid];
-                ShowGameDetails(game);
+                //ShowGameDetails(game);
             }
             catch { MessageBox.Show("No game selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error); };
         }
-        
-
-
         private void searchTextBox_TextChanged(object sender, TextChangedEventArgs e)
         {
             

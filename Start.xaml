@@ -51,11 +51,12 @@ Title="Start" Height="565" Width="800" Icon="/VaporIcon.png" WindowStyle="None" 
             <ColumnDefinition Width="43*"/>
             <ColumnDefinition Width="110*"/>
         </Grid.ColumnDefinitions>
+        
         <Canvas Margin="0,0,194,0" Background="#FF1F1F1F" Grid.ColumnSpan="3" Height="555" VerticalAlignment="Bottom">
             <Image Height="100" Canvas.Left="34" Canvas.Top="9" Width="100" Source="/VaporIcon.png"/>
-            <Button x:Name="addButton" Content="Add" Canvas.Top="129" HorizontalAlignment="Left" VerticalAlignment="Center" Width="158" Height="45" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F" Click="addButton_Click_1"/>
-            <Button x:Name="deleteButton" Content="Delete" Canvas.Top="195" Width="158" Height="45" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F" Click="deleteButton_Click"/>
-            <Button x:Name="detailsButton" Content="Details" Canvas.Top="259" Width="158" Height="45" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F" Click="detailsButton_Click"/>
+            <Button x:Name="addButton" Content="Add" Canvas.Top="129" HorizontalAlignment="Left" VerticalAlignment="Center" Width="168" Height="45" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F" Click="addButton_Click_1"/>
+            <Button x:Name="deleteButton" Content="Delete" Canvas.Top="195" Width="168" Height="45" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F" Click="deleteButton_Click"/>
+            <Button x:Name="detailsButton" Content="Details" Canvas.Top="259" Width="168" Height="45" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#FF1F1F1F" Foreground="White" BorderBrush="#FF1F1F1F" Click="detailsButton_Click"/>
         </Canvas>
 
         <DockPanel LastChildFill="False" Margin="0,358,194,0" Grid.ColumnSpan="3">
@@ -68,7 +69,9 @@ Title="Start" Height="565" Width="800" Icon="/VaporIcon.png" WindowStyle="None" 
                 </Button.Background>
             </Button>
         </DockPanel>
-        <Canvas x:Name="canvas" Margin="150,51,10,-10" Grid.ColumnSpan="4" Grid.Column="2"/>
+        <Canvas x:Name="canvas" Margin="150,51,10,-10" Grid.ColumnSpan="4" Grid.Column="2">
+        </Canvas>
+
 
         <Canvas Margin="122,0,0,0" Grid.ColumnSpan="4" OpacityMask="Black" Background="#FF1F1F1F" Height="46" VerticalAlignment="Top" Grid.Column="2" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove">
             <Expander Height="114" Header="Sort" Width="158" HorizontalAlignment="Left" Canvas.Left="-145" Canvas.Top="319" VerticalAlignment="Top" Foreground="White"
@@ -90,7 +93,30 @@ Title="Start" Height="565" Width="800" Icon="/VaporIcon.png" WindowStyle="None" 
             </Expander>
 
             <Canvas Margin="152,0,0,0" Grid.ColumnSpan="3" OpacityMask="Black" Background="#FF1F1F1F" Height="46" VerticalAlignment="Top"/>
-            <TextBox x:Name="searchTextBox" Height="24" GotFocus="RemovePlaceholderText" Background="#FF2B2B2B" TextWrapping="Wrap" Text="Search..." Foreground="White" TextChanged="searchTextBox_TextChanged" Canvas.Left="27" Canvas.Top="12" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF2B2B2B" FontSize="14" FontWeight="Bold"/>
+            <TextBox x:Name="searchTextBox" Text="Search..." Height="27" Width="200" GotFocus="RemovePlaceholderText" Background="#2B2B2B" BorderBrush="#1f1f1f" Foreground="White" Padding="5" FontWeight="Bold" FontSize="12" Canvas.Left="40" Canvas.Top="10" HorizontalAlignment="Left" VerticalAlignment="Top" TextChanged="searchTextBox_TextChanged">
+                <TextBox.Style>
+                    <Style TargetType="{x:Type TextBox}">
+                        <Setter Property="Template">
+                            <Setter.Value>
+                                <ControlTemplate TargetType="{x:Type TextBox}">
+                                    <Border BorderBrush="{TemplateBinding BorderBrush}"
+                                BorderThickness="{TemplateBinding BorderThickness}"
+                                Background="{TemplateBinding Background}"
+                                SnapsToDevicePixels="True"
+                                CornerRadius="10">
+                                        <ScrollViewer x:Name="PART_ContentHost" Focusable="false" HorizontalScrollBarVisibility="Hidden" VerticalScrollBarVisibility="Hidden" Margin="1,-1,-1,1" />
+                                    </Border>
+                                    <ControlTemplate.Triggers>
+                                        <Trigger Property="IsEnabled" Value="False">
+                                            <Setter Property="Foreground" Value="{DynamicResource {x:Static SystemColors.GrayTextBrushKey}}" />
+                                        </Trigger>
+                                    </ControlTemplate.Triggers>
+                                </ControlTemplate>
+                            </Setter.Value>
+                        </Setter>
+                    </Style>
+                </TextBox.Style>
+            </TextBox>
             <Button Content="X" Canvas.Left="612" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00DDDDDD" Foreground="#FC4A4849" BorderBrush="#00707070" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="Button_Click_1" Width="35" Height="55"/>
             <Button Content="-" Canvas.Left="592" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00DDDDDD" Foreground="#FC4A4849" BorderBrush="#00707070" FontFamily="Arial" FontWeight="Bold" FontSize="28" Click="Button_Click_2" RenderTransformOrigin="0.547,0.179" Width="25" Height="46"/>
 

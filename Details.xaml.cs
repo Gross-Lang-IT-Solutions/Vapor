@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using Vapor;
 using static Vapor.Start;
 
 namespace Vapor
@@ -24,25 +25,26 @@ namespace Vapor
 
         
 
-        public Details()
+        public Details(string name, string publisher, DateTime installDate, TimeSpan playTime, DateTime lastPlayed, string category, uint ageRating, string path)
         {
             InitializeComponent();
 
-          
-        }
-        public string GameName { get; set; }
-        public int AgeRating { get; set; }
-        public string Publisher { get; set; }
+            lbl.Content = name;
+            lbl_Copy.Content = publisher;
+            lbl_Copy1.Content = installDate;
+            lbl_Copy2.Content = playTime;
+            lbl_Copy3.Content = lastPlayed;
+            lbl_Copy4.Content = category;
+            lbl_Copy6.Content = ageRating;
+            lbl_Copy7.Content = path;
 
-       
-        private void okButton_Click(object sender, RoutedEventArgs e)
+        }
+
+        private void Button_Click(object sender, RoutedEventArgs e)
         {
-            GameName = gameNameTextBox.Text;
-            AgeRating = int.Parse(ageRatingComboBox.Text);
-            Publisher = publisherTextBox.Text;
-
-            DialogResult = true;
+            this.Close();
         }
-
     }
 }
+
+
