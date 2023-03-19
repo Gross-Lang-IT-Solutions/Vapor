@@ -8,28 +8,28 @@ Experience gaming like never before with Vapor, the all-new game launcher! Say g
 # Dependencies
 ## This file uses the following dependencies from the System.Windows namespace:
 
-Window
-Canvas
-Point
-Expander
-Button
-Polygon
-SolidColorBrush
-Color
-Brushes
-ImageBrush
-BitmapImage
-Variables
-#This file contains the following variables:
+* Window
+* Canvas
+* Point
+* Expander
+* Button
+* Polygon
+* SolidColorBrush
+* Color
+* Brushes
+* ImageBrush
+* BitmapImage
+* Variables
+* #This file contains the following variables:
 
-x: an integer initialized to 1
-gameCount: an integer initialized to 0
-index: an integer initialized to 0
-config: a Config object
-guid: a Guid object initialized to Guid.Empty
-configFilePath: a string representing the file path for the config.json file
-isDragging: a boolean initialized to false
-startPoint: a Point object
+* x: an integer initialized to 1
+* gameCount: an integer initialized to 0
+* index: an integer initialized to 0
+* config: a Config object
+* guid: a Guid object initialized to Guid.Empty
+* configFilePath: a string representing the file path for the config.json file
+* isDragging: a boolean initialized to false
+* startPoint: a Point object
 # Methods
 ## This file contains the following methods:
 
