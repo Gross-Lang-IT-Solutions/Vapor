@@ -2,6 +2,11 @@
 ## The best choice for a perfect game experience
 Experience gaming like never before with Vapor, the all-new game launcher! Say goodbye to cluttered game libraries and hello to an organized and sleek platform that makes finding and launching your favorite games a breeze. Whether you're a hardcore gamer or just looking for something to pass the time, Vapor has got you covered. With its smooth navigation and user-friendly interface, gaming has never been more accessible and enjoyable. So why wait? Get your hands on Vapor today and step into the future of gaming!
 
+#Class diagram 
+
+<img width="815" alt="klassendiagramm" src="https://user-images.githubusercontent.com/96631036/226197285-0dce6d19-cdcf-4991-b7f4-2791f66cef2b.png">
+![Uploading klassendiagramm.png…]()
+
 # Vapor Start.xaml Documentation
 ##This is the documentation for the Start.xaml file in the Vapor project. This file contains the logic for displaying and sorting the games in the Vapor game launcher.
 
