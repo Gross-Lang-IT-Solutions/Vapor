@@ -20,7 +20,7 @@ Experience gaming like never before with Vapor, the all-new game launcher! Say g
 * ImageBrush
 * BitmapImage
 * Variables
-* #This file contains the following variables:
+# This file contains the following variables:
 
 * x: an integer initialized to 1
 * gameCount: an integer initialized to 0
