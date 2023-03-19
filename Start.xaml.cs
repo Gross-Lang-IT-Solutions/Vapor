@@ -31,6 +31,8 @@ namespace Vapor
         private Config config;
         Guid guid = Guid.Empty;
         private const string configFilePath = "config.json";
+        private bool isDragging = false;
+        private Point startPoint;
 
         public Start()
         {
@@ -388,6 +390,31 @@ namespace Vapor
         {
             this.WindowState = WindowState.Minimized;
 
+        }
+
+        private void Canvas_MouseLeftButtonDown(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = true;
+            startPoint = e.GetPosition(this);
+        }
+
+        private void Canvas_MouseLeftButtonUp(object sender, MouseButtonEventArgs e)
+        {
+            isDragging = false;
+
+        }
+
+        private void Canvas_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (isDragging)
+            {
+                Point currentPosition = e.GetPosition(this);
+                double deltaX = currentPosition.X - startPoint.X;
+                double deltaY = currentPosition.Y - startPoint.Y;
+
+                this.Left += deltaX;
+                this.Top += deltaY;
+            }
         }
     }
 }

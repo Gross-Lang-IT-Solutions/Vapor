@@ -70,7 +70,7 @@ Title="Start" Height="565" Width="800" Icon="/VaporIcon.png" WindowStyle="None" 
         </DockPanel>
         <Canvas x:Name="canvas" Margin="150,51,10,-10" Grid.ColumnSpan="4" Grid.Column="2"/>
 
-        <Canvas Margin="122,0,0,0" Grid.ColumnSpan="4" OpacityMask="Black" Background="#FF1F1F1F" Height="46" VerticalAlignment="Top" Grid.Column="2">
+        <Canvas Margin="122,0,0,0" Grid.ColumnSpan="4" OpacityMask="Black" Background="#FF1F1F1F" Height="46" VerticalAlignment="Top" Grid.Column="2" MouseLeftButtonDown="Canvas_MouseLeftButtonDown" MouseLeftButtonUp="Canvas_MouseLeftButtonUp" MouseMove="Canvas_MouseMove">
             <Expander Height="114" Header="Sort" Width="158" HorizontalAlignment="Left" Canvas.Left="-145" Canvas.Top="319" VerticalAlignment="Top" Foreground="White"
           Expanded="Expander_Expanded" Collapsed="Expander_Collapsed" IsExpanded="True">
                 <Expander.Resources>
