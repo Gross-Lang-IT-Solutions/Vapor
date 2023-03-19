@@ -11,6 +11,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
+using static Vapor.Start;
 
 namespace Vapor
 {
@@ -19,15 +20,29 @@ namespace Vapor
     /// </summary>
     public partial class Details : Window
     {
+        private Game game;
+
         
+
         public Details()
         {
             InitializeComponent();
-           
+
+          
         }
-        private void OKButton_Click(object sender, RoutedEventArgs e)
+        public string GameName { get; set; }
+        public int AgeRating { get; set; }
+        public string Publisher { get; set; }
+
+       
+        private void okButton_Click(object sender, RoutedEventArgs e)
         {
-            this.Close();
+            GameName = gameNameTextBox.Text;
+            AgeRating = int.Parse(ageRatingComboBox.Text);
+            Publisher = publisherTextBox.Text;
+
+            DialogResult = true;
         }
+
     }
 }

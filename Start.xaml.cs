@@ -1,4 +1,5 @@
-﻿using Microsoft.Win32;
+﻿using System.Windows;
+using Microsoft.Win32;
 using Newtonsoft.Json.Linq;
 using System;
 using System.Collections.Generic;
@@ -15,6 +16,8 @@ using System.Windows.Media;
 using System.Windows.Media.Imaging;
 using System.Windows.Shapes;
 using Path = System.IO.Path;
+using System.IO;
+
 namespace Vapor
 {
     /// <summary>
@@ -77,7 +80,6 @@ namespace Vapor
             currentSortOption = SortOption.NameAscending;
             showAllGames();
             var button = sender as Button;
-          
         }
 
         private void descendingButton_Click(object sender, RoutedEventArgs e)
@@ -108,6 +110,8 @@ namespace Vapor
             currentSortOption = SortOption.DateAddedDescending;
             showAllGames();
             expander.IsExpanded = false;
+
+            
         }
 
         private void showGames(IEnumerable<KeyValuePair<Guid, Game>> games)
@@ -126,7 +130,7 @@ namespace Vapor
                 int col = index % hexPerRow;
                 double x = col * 100 + (row % 2 == 0 ? 50 : 0);
                 double y = row * 87;
-                var hexagon = CreateHexagon(hexagonPoints);
+                var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath); // Load the game icon here
                 Canvas.SetLeft(hexagon, x);
                 Canvas.SetTop(hexagon, y);
                 canvas.Children.Add(hexagon);
@@ -145,17 +149,66 @@ namespace Vapor
         }
 
 
+        private void setGameIcon(Button button, string gamePath)
+        {
+            try
+            {
+                string iconPath = gamePath;
+                iconPath = iconPath.Replace("\\", "/");
+                iconPath = "file:///" + iconPath;
+                iconPath = iconPath + ",0";
+                ImageBrush iconBrush = new ImageBrush();
+                iconBrush.ImageSource = new BitmapImage(new Uri(iconPath));
+                button.Background = iconBrush;
+            }
+            catch
+            {
+                // Wenn das Icon nicht gefunden wurde oder nicht gelesen werden konnte, bleibt das Standard-Hexagon-Icon erhalten.
+            }
+        }
+
+        public class GameInfo
+{
+    public string AgeRating { get; set; }
+    public string Category { get; set; }
+    public string Publisher { get; set; }
+}
 
 
-        private Polygon CreateHexagon(Point[] points)
+
+        private Polygon CreateHexagon(Point[] points, string gamePath)
         {
             var hexagon = new Polygon();
             hexagon.Points = new PointCollection(points);
-            hexagon.Fill = Brushes.Blue;
             hexagon.Stroke = Brushes.Black;
             hexagon.StrokeThickness = 2;
+
+            // Load the icon of the game executable file
+            try
+            {
+                using (var icon = System.Drawing.Icon.ExtractAssociatedIcon(gamePath))
+                {
+                    if (icon != null)
+                    {
+                        var bmp = icon.ToBitmap();
+                        var stream = new MemoryStream();
+                        bmp.Save(stream, System.Drawing.Imaging.ImageFormat.Png);
+                        stream.Seek(0, SeekOrigin.Begin);
+
+                        var brush = new ImageBrush();
+                        brush.ImageSource = BitmapFrame.Create(stream, BitmapCreateOptions.None, BitmapCacheOption.OnLoad);
+                        hexagon.Fill = brush;
+                    }
+                }
+            }
+            catch (Exception ex)
+            {
+                Console.WriteLine(ex.Message);
+            }
+
             return hexagon;
         }
+
         private void addButton_Click_1(object sender, RoutedEventArgs e)
         {
             var openFileDialog = new OpenFileDialog();
@@ -163,13 +216,14 @@ namespace Vapor
             openFileDialog.Title = "Select Game Executable";
             if (openFileDialog.ShowDialog() == true)
             {
-                var game = new Game(openFileDialog.FileName, Path.GetFullPath(openFileDialog.FileName), DateTime.Now);
+                var game = new Game(openFileDialog.SafeFileName, Path.GetFullPath(openFileDialog.FileName), DateTime.Now);
                 config.AddGame(game);                 // Create a hexagon shape for the new game
 
                 showAllGames();
 
                 config.Save(configFilePath);
             }
+
         }
         // Define the button click event handler
         private void Button_Click(string index)
@@ -263,7 +317,7 @@ namespace Vapor
                         int col = index % hexPerRow;
                         double x = col * 100 + (row % 2 == 0 ? 50 : 0);
                         double y = row * 87;
-                        var hexagon = CreateHexagon(hexagonPoints);
+                        var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath); // Load the game icon here
                         Canvas.SetLeft(hexagon, x);
                         Canvas.SetTop(hexagon, y);
                         canvas.Children.Add(hexagon);
