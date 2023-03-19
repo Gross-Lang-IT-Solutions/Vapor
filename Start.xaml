@@ -91,7 +91,8 @@ Title="Start" Height="565" Width="800" Icon="/VaporIcon.png" WindowStyle="None" 
 
             <Canvas Margin="152,0,0,0" Grid.ColumnSpan="3" OpacityMask="Black" Background="#FF1F1F1F" Height="46" VerticalAlignment="Top"/>
             <TextBox x:Name="searchTextBox" Height="24" GotFocus="RemovePlaceholderText" Background="#FF2B2B2B" TextWrapping="Wrap" Text="Search..." Foreground="White" TextChanged="searchTextBox_TextChanged" Canvas.Left="27" Canvas.Top="12" Width="125" HorizontalAlignment="Left" VerticalAlignment="Top" BorderBrush="#FF2B2B2B" FontSize="14" FontWeight="Bold"/>
-            <Button Content="X" Canvas.Left="622" Canvas.Top="13" HorizontalAlignment="Left" VerticalAlignment="Top" Background="#00DDDDDD" Foreground="#FC4A4849" BorderBrush="#00707070" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="Button_Click_1"/>
+            <Button Content="X" Canvas.Left="612" HorizontalAlignment="Left" VerticalAlignment="Center" Background="#00DDDDDD" Foreground="#FC4A4849" BorderBrush="#00707070" FontFamily="Arial" FontWeight="Bold" FontSize="16" Click="Button_Click_1" Width="35" Height="55"/>
+            <Button Content="-" Canvas.Left="592" HorizontalAlignment="Center" VerticalAlignment="Top" Background="#00DDDDDD" Foreground="#FC4A4849" BorderBrush="#00707070" FontFamily="Arial" FontWeight="Bold" FontSize="28" Click="Button_Click_2" RenderTransformOrigin="0.547,0.179" Width="25" Height="46"/>
 
 
         </Canvas>

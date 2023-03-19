@@ -132,7 +132,13 @@ namespace Vapor
                 int col = index % hexPerRow;
                 double x = col * 100 + (row % 2 == 0 ? 50 : 0);
                 double y = row * 87;
-                var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath); // Load the game icon here
+                bool isChoosed = false;
+                if(game.Key == guid)
+                {
+                    isChoosed = true;
+                }
+                var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath, isChoosed); // Load the game icon here
+
                 Canvas.SetLeft(hexagon, x);
                 Canvas.SetTop(hexagon, y);
                 canvas.Children.Add(hexagon);
@@ -178,11 +184,22 @@ namespace Vapor
 
 
 
-        private Polygon CreateHexagon(Point[] points, string gamePath)
+        private Polygon CreateHexagon(Point[] points, string gamePath, bool selected = false)
         {
             var hexagon = new Polygon();
             hexagon.Points = new PointCollection(points);
-            hexagon.Stroke = Brushes.Black;
+
+            if (selected)
+            {
+                hexagon.Stroke = new SolidColorBrush(Color.FromArgb(0xFF, 0x8D, 0x00, 0xF3));
+            }
+            else
+            {
+                hexagon.Stroke = Brushes.Black;
+            }
+
+
+
             hexagon.StrokeThickness = 2;
 
             // Load the icon of the game executable file
@@ -233,6 +250,7 @@ namespace Vapor
             //MessageBox.Show(Convert.ToString(index));
 
             guid = Guid.Parse(index);
+            showAllGames();
         }
 
         private void startButton_Click_1(object sender, RoutedEventArgs e)
@@ -364,6 +382,12 @@ namespace Vapor
         private void Button_Click_1(object sender, RoutedEventArgs e)
         {
             Environment.Exit(0);
+        }
+
+        private void Button_Click_2(object sender, RoutedEventArgs e)
+        {
+            this.WindowState = WindowState.Minimized;
+
         }
     }
 }
