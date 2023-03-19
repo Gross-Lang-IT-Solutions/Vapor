@@ -5,7 +5,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:local="clr-namespace:Vapor"
         mc:Ignorable="d"
-             Title="Add Game" Height="271" Width="440" Icon="/VaporIcon.png" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" Background="#FF1B1B1B">
+             Title="Add Game" Height="285" Width="440" Icon="/VaporIcon.png" WindowStyle="None" WindowStartupLocation="CenterScreen" ResizeMode="NoResize" Topmost="True" Background="#FF1B1B1B">
 
     <Window.Resources>
         <SolidColorBrush x:Key="HoverBrush" Color="#FF1C1C1C"/>
@@ -42,7 +42,7 @@
         </Style>
     </Window.Resources>
 
-    <Grid Height="270" VerticalAlignment="Top">
+    <Grid Height="285" VerticalAlignment="Center">
 
         <Grid.RowDefinitions>
             <RowDefinition Height="Auto"/>
@@ -78,10 +78,12 @@
                 <Style/>
             </Button.Style>
         </Button>
-        <Image Height="32" Margin="16,0,392,0" VerticalAlignment="Center" RenderTransformOrigin="0.509,-0.236" Source="/VaporIcon.png" Grid.ColumnSpan="2" Stretch="Fill">
+        <Image Height="26" Margin="16,0,396,0" VerticalAlignment="Center" RenderTransformOrigin="0.509,-0.236" Source="/VaporIcon.png" Grid.ColumnSpan="2" Stretch="Fill">
             <Image.OpacityMask>
                 <ImageBrush ImageSource="/VaporIcon.png"/>
             </Image.OpacityMask>
         </Image>
+        <Label Content="Favorite:" HorizontalAlignment="Left" Margin="10,223,0,0" Grid.Row="4" VerticalAlignment="Top" Grid.ColumnSpan="2" Foreground="White" RenderTransformOrigin="0.473,0.553"/>
+        <Label x:Name="lbl_Copy8" Grid.Column="1" Content="Label" HorizontalAlignment="Left" Margin="141,223,0,0" Grid.Row="4" VerticalAlignment="Top" Foreground="White"/>
     </Grid>
 </Window>

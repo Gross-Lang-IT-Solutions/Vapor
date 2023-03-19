@@ -135,11 +135,16 @@ namespace Vapor
                 double x = col * 100 + (row % 2 == 0 ? 50 : 0);
                 double y = row * 87;
                 bool isChoosed = false;
+                bool favorite = false;
                 if(game.Key == guid)
                 {
                     isChoosed = true;
                 }
-                var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath, isChoosed); // Load the game icon here
+                if (config.Games[game.Key].IsFavorite) 
+                { 
+                    favorite = true;
+                }
+                var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath, isChoosed, favorite); // Load the game icon here
 
                 Canvas.SetLeft(hexagon, x);
                 Canvas.SetTop(hexagon, y);
@@ -186,7 +191,7 @@ namespace Vapor
 
 
 
-        private Polygon CreateHexagon(Point[] points, string gamePath, bool selected = false)
+        private Polygon CreateHexagon(Point[] points, string gamePath, bool selected = false, bool favorite = false)
         {
             var hexagon = new Polygon();
             hexagon.Points = new PointCollection(points);
@@ -194,6 +199,10 @@ namespace Vapor
             if (selected)
             {
                 hexagon.Stroke = new SolidColorBrush(Color.FromArgb(0xFF, 0x8D, 0x00, 0xF3));
+            }
+            else if (favorite)
+            {
+                hexagon.Stroke = Brushes.Gold;
             }
             else
             {
@@ -251,6 +260,7 @@ namespace Vapor
         {
             //MessageBox.Show(Convert.ToString(index));
 
+            star.Visibility = Visibility.Visible;
             guid = Guid.Parse(index);
             showAllGames();
         }
@@ -311,7 +321,8 @@ namespace Vapor
                     game.LastPlayedDateTime,
                     game.Category,
                     game.AgeRating,
-                    game.ExecutablePath);
+                    game.ExecutablePath,
+                    game.IsFavorite);
 
 
             // Setzen Sie das Hauptfenster als Eigentümer des zweiten Fensters
@@ -360,7 +371,17 @@ namespace Vapor
                         int col = index % hexPerRow;
                         double x = col * 100 + (row % 2 == 0 ? 50 : 0);
                         double y = row * 87;
-                        var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath); // Load the game icon here
+                        bool isChoosed = false;
+                        bool favorite = false;
+                        if (game.Key == guid)
+                        {
+                            isChoosed = true;
+                        }
+                        if (config.Games[game.Key].IsFavorite)
+                        {
+                            favorite = true;
+                        }
+                        var hexagon = CreateHexagon(hexagonPoints, game.Value.ExecutablePath, isChoosed, favorite); // Load the game icon here
                         Canvas.SetLeft(hexagon, x);
                         Canvas.SetTop(hexagon, y);
                         canvas.Children.Add(hexagon);
@@ -430,6 +451,26 @@ namespace Vapor
                 this.Left += deltaX;
                 this.Top += deltaY;
             }
+        }
+
+        private void favoritesButton_Click(object sender, RoutedEventArgs e)
+        {
+            try 
+            {
+                var game = config.Games[guid];
+                
+                if(game.IsFavorite) 
+                {
+                    game.IsFavorite = false;
+                }
+                else
+                {
+                    game.IsFavorite = true;
+                }
+                config.Save(configFilePath);
+                showAllGames();
+            }
+            catch { MessageBox.Show("No game selected", "Error", MessageBoxButton.OK, MessageBoxImage.Error); };
         }
     }
 }

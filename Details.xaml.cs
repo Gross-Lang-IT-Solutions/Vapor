@@ -25,7 +25,7 @@ namespace Vapor
 
         
 
-        public Details(string name, string publisher, DateTime installDate, TimeSpan playTime, DateTime lastPlayed, string category, uint ageRating, string path)
+        public Details(string name, string publisher, DateTime installDate, TimeSpan playTime, DateTime lastPlayed, string category, uint ageRating, string path, bool favorite)
         {
             InitializeComponent();
 
@@ -37,6 +37,7 @@ namespace Vapor
             lbl_Copy4.Content = category;
             lbl_Copy6.Content = ageRating;
             lbl_Copy7.Content = path;
+            lbl_Copy8.Content = favorite;
 
         }
 
