@@ -1,0 +1,29 @@
+﻿<Project Sdk="Microsoft.NET.Sdk">
+
+  <PropertyGroup>
+    <OutputType>WinExe</OutputType>
+    <TargetFramework>net7.0-windows</TargetFramework>
+    <Nullable>enable</Nullable>
+    <UseWPF>true</UseWPF>
+    <ApplicationManifest>app.manifest</ApplicationManifest>
+  </PropertyGroup>
+
+  <ItemGroup>
+    <None Remove="Frame 2.png" />
+    <None Remove="VaporIcon.png" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <PackageReference Include="System.Drawing.Common" Version="7.0.0" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <ProjectReference Include="..\Vapor-backend_dev\Source\VaporBackend\VaporBackend.csproj" />
+  </ItemGroup>
+
+  <ItemGroup>
+    <Resource Include="Frame 2.png" />
+    <Resource Include="VaporIcon.png" />
+  </ItemGroup>
+
+</Project>
