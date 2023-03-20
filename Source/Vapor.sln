@@ -1,0 +1,31 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 17
+VisualStudioVersion = 17.4.33103.184
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "VaporBackend", "VaporBackend\VaporBackend.csproj", "{861AA54E-C510-43C7-90F2-F731188E9E24}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "VaporCli", "VaporCli\VaporCli.csproj", "{19017E9F-614E-482A-9413-94BFC33EA129}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{861AA54E-C510-43C7-90F2-F731188E9E24}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{861AA54E-C510-43C7-90F2-F731188E9E24}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{861AA54E-C510-43C7-90F2-F731188E9E24}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{861AA54E-C510-43C7-90F2-F731188E9E24}.Release|Any CPU.Build.0 = Release|Any CPU
+		{19017E9F-614E-482A-9413-94BFC33EA129}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{19017E9F-614E-482A-9413-94BFC33EA129}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{19017E9F-614E-482A-9413-94BFC33EA129}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{19017E9F-614E-482A-9413-94BFC33EA129}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {7FDE022B-22BD-4760-B708-C068F8A1959E}
+	EndGlobalSection
+EndGlobal
